@@ -10,8 +10,8 @@
   "apps": {
     "ios": {
       "type": "ios.app",
-      "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/ReactNativeTDD.app",
-      "build": "xcodebuild -workspace ios/ReactNativeTDD.xcworkspace -scheme ReactNativeTDD -configuration Degub -sdk iphonesimulator -derivedDataPath ios/build"
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/ReactNativeTDD.app",
+      "build": "xcodebuild -workspace ios/ReactNativeTDD.xcworkspace -scheme ReactNativeTDD -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build"
     },
     "android": {
       "type": "android.apk",
