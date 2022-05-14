@@ -19,14 +19,13 @@ describe('Example', () => {
 
     await expect(element(by.id('buttonLogin'))).toBeVisible();
     await element(by.id('buttonLogin')).tap();
-  });
-  // it('should show hello screen after tap', async () => {
-  //   await element(by.id('hello_button')).tap();
-  //   await expect(element(by.text('Hello!!!'))).toBeVisible();
-  // });
 
-  // it('should show world screen after tap', async () => {
-  //   await element(by.id('world_button')).tap();
-  //   await expect(element(by.text('World!!!'))).toBeVisible();
-  // });
+    await expect(element(by.id('domainTextInput'))).toBeVisible();
+    await element(by.id('domainTextInput')).tap();
+    await element(by.id('domainTextInput')).typeText('Test Domain');
+
+    await expect(element(by.id('buttonDomain'))).toBeVisible();
+    await element(by.id('buttonDomain')).tap();
+    // await expect(element(by.id('domainTextInput'))).toHaveText('');
+  });
 });
