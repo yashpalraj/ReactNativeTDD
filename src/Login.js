@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 
 import {
@@ -21,7 +13,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Button, Text, TextInput, Provider} from 'react-native-paper';
 import Domain from './Domain';
 
-const App = () => {
+const Login = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -45,8 +37,8 @@ const App = () => {
     const arr = domainList;
     arr.push(domainName);
     setDomainList(arr);
-    // setUsername('');
-    // setPassword('');
+    setUsername('');
+    setPassword('');
   };
 
   return (
@@ -97,4 +89,4 @@ const App = () => {
 
 const styles = StyleSheet.create({});
 
-export default App;
+export default Login;

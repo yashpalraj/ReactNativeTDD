@@ -26,6 +26,47 @@ describe('Example', () => {
 
     await expect(element(by.id('buttonDomain'))).toBeVisible();
     await element(by.id('buttonDomain')).tap();
-    // await expect(element(by.id('domainTextInput'))).toHaveText('');
+
+    await element(by.id('username')).tap();
+    await element(by.id('username')).typeText('Khush');
+
+    await element(by.id('password')).tap();
+    await element(by.id('password')).typeText('Yash');
+
+    await element(by.id('buttonLogin')).tap();
+
+    await element(by.id('domainTextInput')).tap();
+    await element(by.id('domainTextInput')).typeText('');
+    await element(by.id('buttonDomain')).tap();
+
+    await element(by.id('domainTextInput')).tap();
+    await element(by.id('domainTextInput')).typeText('Domain');
+    await element(by.id('buttonDomain')).tap();
+
+    // await element(by.id('username')).tap();
+    // await element(by.id('username')).typeText('Hardik');
+
+    // await element(by.id('password')).tap();
+    // await element(by.id('password')).typeText('HS1717');
+
+    // await element(by.id('buttonLogin')).tap();
+
+    // await element(by.id('domainTextInput')).tap();
+    // await element(by.id('domainTextInput')).typeText('HS');
+
+    // await element(by.id('buttonDomain')).tap();
+
+    await element(by.id('username')).tap();
+    await element(by.id('username')).typeText('Yas');
+
+    await element(by.id('password')).tap();
+    await element(by.id('password')).typeText('123');
+
+    await element(by.id('buttonLogin')).tap();
+
+    await element(by.id('domainTextInput')).tap();
+    await element(by.id('domainTextInput')).typeText('');
+
+    await element(by.id('buttonDomainCancel')).tap();
   });
 });

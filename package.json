@@ -10,10 +10,12 @@
     "lint": "eslint *.js e2e/*.js __tests__/**/*.js"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.10",
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-paper": "^4.12.1",
-    "react-native-vector-icons": "^9.1.0"
+    "react-native-vector-icons": "^9.1.0",
+    "react-navigation": "^4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
