@@ -75,7 +75,12 @@ const Login = () => {
             style={{margin: 20}}
             data={domainList}
             keyExtractor={item => item}
-            renderItem={item => <Text style={{fontSize: 15}}>{item.item}</Text>}
+            renderItem={item => {
+              <View>
+                <Text style={{fontSize: 15}}>{item.item}</Text>
+                <Button testID="newUrlButton" />
+              </View>;
+            }}
           />
           <Domain
             isVisible={showDomainModal}

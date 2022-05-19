@@ -33,8 +33,8 @@ describe('Example', () => {
     await expect(element(by.id('buttonDomain'))).toBeVisible();
     await element(by.id('buttonDomain')).tap();
 
-    await expect(element(by.label(domainTextInputValue))).toBeVisible();
-    await expect(element(by.id('domainTextInput'))).not.toBeVisible();
+    // await expect(element(by.label(domainTextInputValue))).toBeVisible();
+    // await expect(element(by.id('domainTextInput'))).not.toBeVisible();
 
     await element(by.id('username')).tap();
     await element(by.id('username')).typeText('Khush');
@@ -79,13 +79,13 @@ describe('Example', () => {
     await element(by.id('buttonDomainCancel')).tap();
   }
 
-  async function enterUrl(domainTextInputValue) {
-    const urlText = 'www.google.com';
+  // async function enterUrl(domainTextInputValue) {
+  //   const urlText = 'www.google.com';
 
-    await element(by.label(domainTextInputValue)).tap();
-    await element(by.id('newUrlButton')).tap();
-    await element(by.id('urlTextInput')).typeText(urlText);
-    await element(by.label(urlText)).toBeVisible();
-    await element(by.id('urlTextInput')).not.toBeVisible();
-  }
+  //   await element(by.label(domainTextInputValue)).tap();
+  //   await element(by.id('newUrlButton')).tap();
+  //   await element(by.id('urlTextInput')).typeText(urlText);
+  //   await element(by.label(urlText)).toBeVisible();
+  //   await element(by.id('urlTextInput')).not.toBeVisible();
+  // }
 });
