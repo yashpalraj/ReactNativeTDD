@@ -30,6 +30,7 @@ const Domain = props => {
   return (
     <Portal>
       <Modal
+        style={{margin: 10}}
         visible={showDomainModal}
         onDismiss={() => {
           setShowDomainModal(false);
@@ -45,7 +46,7 @@ const Domain = props => {
           <HelperText testID="domainTextInputErrorMessage" type="error">
             {domainErrorMessage}
           </HelperText>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
             <Button
               mode="contained"
               testID="buttonDomain"

@@ -7,13 +7,14 @@ import {
   useColorScheme,
   FlatList,
   View,
+  Pressable,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Button, Text, TextInput, Provider} from 'react-native-paper';
 import Domain from './Domain';
 
-const Login = () => {
+const Login = ({navigation, route}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -76,10 +77,27 @@ const Login = () => {
             data={domainList}
             keyExtractor={item => item}
             renderItem={item => {
-              <View>
-                <Text style={{fontSize: 15}}>{item.item}</Text>
-                <Button testID="newUrlButton" />
-              </View>;
+              return (
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('URLList', {domainName: item.item});
+                  }}>
+                  <View
+                    style={{
+                      borderColor: '#000000',
+                      borderRadius: 10,
+                      borderWidth: 2,
+                      marginVertical: 10,
+                      marginHorizontal: 5,
+                      padding: 5,
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      justifyContent: 'space-around',
+                    }}>
+                    <Text style={{fontSize: 15}}>{item.item}</Text>
+                  </View>
+                </Pressable>
+              );
             }}
           />
           <Domain

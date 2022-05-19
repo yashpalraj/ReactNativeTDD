@@ -11,7 +11,7 @@ describe('Example', () => {
   it('can Login', async () => {
     const domainTextInputValue = 'Raj';
     await checkLogin(domainTextInputValue);
-    // await enterUrl(domainTextInputValue);
+    await enterUrl(domainTextInputValue);
   });
 
   async function checkLogin(domainTextInputValue) {
@@ -36,21 +36,21 @@ describe('Example', () => {
     // await expect(element(by.label(domainTextInputValue))).toBeVisible();
     // await expect(element(by.id('domainTextInput'))).not.toBeVisible();
 
-    await element(by.id('username')).tap();
-    await element(by.id('username')).typeText('Khush');
+    // await element(by.id('username')).tap();
+    // await element(by.id('username')).typeText('Khush');
 
-    await element(by.id('password')).tap();
-    await element(by.id('password')).typeText('Yash');
+    // await element(by.id('password')).tap();
+    // await element(by.id('password')).typeText('Yash');
 
-    await element(by.id('buttonLogin')).tap();
+    // await element(by.id('buttonLogin')).tap();
 
-    await element(by.id('domainTextInput')).tap();
-    await element(by.id('domainTextInput')).typeText('');
-    await element(by.id('buttonDomain')).tap();
+    // await element(by.id('domainTextInput')).tap();
+    // await element(by.id('domainTextInput')).typeText('');
+    // await element(by.id('buttonDomain')).tap();
 
-    await element(by.id('domainTextInput')).tap();
-    await element(by.id('domainTextInput')).typeText('Domain');
-    await element(by.id('buttonDomain')).tap();
+    // await element(by.id('domainTextInput')).tap();
+    // await element(by.id('domainTextInput')).typeText('Domain');
+    // await element(by.id('buttonDomain')).tap();
 
     // await element(by.id('username')).tap();
     // await element(by.id('username')).typeText('Hardik');
@@ -65,27 +65,29 @@ describe('Example', () => {
 
     // await element(by.id('buttonDomain')).tap();
 
-    await element(by.id('username')).tap();
-    await element(by.id('username')).typeText('Yas');
+    // await element(by.id('username')).tap();
+    // await element(by.id('username')).typeText('Yas');
 
-    await element(by.id('password')).tap();
-    await element(by.id('password')).typeText('123');
+    // await element(by.id('password')).tap();
+    // await element(by.id('password')).typeText('123');
 
-    await element(by.id('buttonLogin')).tap();
+    // await element(by.id('buttonLogin')).tap();
 
-    await element(by.id('domainTextInput')).tap();
-    await element(by.id('domainTextInput')).typeText('');
+    // await element(by.id('domainTextInput')).tap();
+    // await element(by.id('domainTextInput')).typeText('');
 
-    await element(by.id('buttonDomainCancel')).tap();
+    // await element(by.id('buttonDomainCancel')).tap();
   }
 
-  // async function enterUrl(domainTextInputValue) {
-  //   const urlText = 'www.google.com';
+  async function enterUrl(domainTextInputValue) {
+    const urlText = 'www.google.com';
 
-  //   await element(by.label(domainTextInputValue)).tap();
-  //   await element(by.id('newUrlButton')).tap();
-  //   await element(by.id('urlTextInput')).typeText(urlText);
-  //   await element(by.label(urlText)).toBeVisible();
-  //   await element(by.id('urlTextInput')).not.toBeVisible();
-  // }
+    await element(by.label(domainTextInputValue)).tap();
+    await expect(element(by.label(domainTextInputValue))).toBeVisible();
+    await element(by.id('newUrlButton')).tap();
+    await element(by.id('urlTextInput')).typeText(urlText);
+    await element(by.id('buttonURL')).tap();
+    await expect(element(by.label(urlText))).toBeVisible();
+    await expect(element(by.id('urlTextInput'))).not.toBeVisible();
+  }
 });
