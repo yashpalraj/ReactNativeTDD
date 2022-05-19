@@ -11,7 +11,7 @@ describe('Example', () => {
   it('can Login', async () => {
     const domainTextInputValue = 'Raj';
     await checkLogin(domainTextInputValue);
-    await enterUrl(domainTextInputValue);
+    // await enterUrl(domainTextInputValue);
   });
 
   async function checkLogin(domainTextInputValue) {
