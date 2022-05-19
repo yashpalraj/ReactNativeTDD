@@ -36,7 +36,7 @@ const Login = ({navigation, route}) => {
   const onDomainEntered = domainName => {
     setShowDomainModal(!showDomainModal);
     const arr = domainList;
-    arr.push(domainName);
+    arr.push({name: domainName, savedURLList: ['www.gmail.com']});
     setDomainList(arr);
     setUsername('');
     setPassword('');
@@ -75,12 +75,14 @@ const Login = ({navigation, route}) => {
           <FlatList
             style={{margin: 20}}
             data={domainList}
-            keyExtractor={item => item}
+            keyExtractor={item => item.name}
             renderItem={item => {
               return (
                 <Pressable
                   onPress={() => {
-                    navigation.navigate('URLList', {domainName: item.item});
+                    navigation.navigate('URLList', {
+                      domainObj: item.item,
+                    });
                   }}>
                   <View
                     style={{
@@ -94,7 +96,7 @@ const Login = ({navigation, route}) => {
                       flexDirection: 'row',
                       justifyContent: 'space-around',
                     }}>
-                    <Text style={{fontSize: 15}}>{item.item}</Text>
+                    <Text style={{fontSize: 15}}>{item.item.name}</Text>
                   </View>
                 </Pressable>
               );

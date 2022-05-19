@@ -5,9 +5,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AddURLModal from './AddURLModal';
 
 const URLList = ({navigation, route}) => {
-  const {domainName} = route.params;
+  const {domainObj} = route.params;
   const [showURLModal, setShowURLModal] = useState(false);
-  const [urlList, setURLList] = useState([]);
+  const [urlList, setURLList] = useState(domainObj.savedURLList);
 
   const onURLButtonClick = () => {
     setShowURLModal(!showURLModal);
@@ -23,7 +23,7 @@ const URLList = ({navigation, route}) => {
   return (
     <SafeAreaView>
       <Text style={{alignSelf: 'center', margin: 10, fontSize: 18}}>
-        {domainName}
+        {domainObj.name}
       </Text>
       <Button
         style={{margin: 10}}
