@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
   SafeAreaView,
@@ -13,13 +13,24 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Button, Text, TextInput, Provider} from 'react-native-paper';
 import Domain from './Domain';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {actions} from './domainStore/slice';
 
 const Login = ({navigation, route}) => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  const {Reducer} = useSelector(
+    reducer => ({Reducer: reducer.domain.domain}),
+    shallowEqual,
+  );
+  const {addURL} = Reducer;
+  const dispatch = useDispatch();
+
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [domainList, setDomainList] = React.useState([]);
+  const [domainList, setDomainList] = React.useState(Reducer.domainList);
   const [showDomainModal, setShowDomainModal] = React.useState(false);
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -35,9 +46,13 @@ const Login = ({navigation, route}) => {
 
   const onDomainEntered = domainName => {
     setShowDomainModal(!showDomainModal);
-    const arr = domainList;
-    arr.push({name: domainName, savedURLList: ['www.gmail.com']});
-    setDomainList(arr);
+    setDomainList(state => [
+      ...state,
+      {
+        name: domainName,
+        savedURLList: [],
+      },
+    ]);
     setUsername('');
     setPassword('');
   };
