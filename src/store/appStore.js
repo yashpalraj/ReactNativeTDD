@@ -1,8 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
 import domainReducers from '../domainStore';
 
-export default configureStore({
+const appStore = configureStore({
   reducer: {
     domain: domainReducers,
   },
 });
+
+export default appStore;

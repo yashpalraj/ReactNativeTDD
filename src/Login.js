@@ -19,40 +19,34 @@ import {actions} from './domainStore/slice';
 const Login = ({navigation, route}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const {Reducer} = useSelector(
-    reducer => ({Reducer: reducer.domain.domain}),
-    shallowEqual,
-  );
-  const {addURL} = Reducer;
+  const {Reducer} = useSelector(reducer => ({Reducer: reducer.domain.domain}));
   const dispatch = useDispatch();
+  console.log('addURL', Reducer.domainList);
 
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [domainList, setDomainList] = React.useState(Reducer.domainList);
+  const [domainList, setDomainList] = React.useState();
   const [showDomainModal, setShowDomainModal] = React.useState(false);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  useEffect(() => {
+    if (Reducer) {
+      setDomainList(Reducer.domainList);
+    }
+  }, [Reducer]);
+
   const onLoginPressed = () => {
     if (username.length > 0 && password.length > 0) {
       setShowDomainModal(!showDomainModal);
-      // const array = new Array();
-      // array.push('yash');
-      // setDomainList(array);
     }
   };
 
   const onDomainEntered = domainName => {
     setShowDomainModal(!showDomainModal);
-    setDomainList(state => [
-      ...state,
-      {
-        name: domainName,
-        savedURLList: [],
-      },
-    ]);
+    dispatch(actions.addDomain(domainName));
     setUsername('');
     setPassword('');
   };

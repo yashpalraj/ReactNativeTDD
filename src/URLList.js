@@ -1,22 +1,50 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useDispatch, useSelector} from 'react-redux';
 import AddURLModal from './AddURLModal';
+import {actions} from './domainStore/slice';
 
 const URLList = ({navigation, route}) => {
   const {domainObj} = route.params;
   const [showURLModal, setShowURLModal] = useState(false);
-  const [urlList, setURLList] = useState(domainObj.savedURLList);
+  const [urlList, setURLList] = useState([]);
+
+  const {Reducer} = useSelector(reducer => ({
+    Reducer: reducer.domain.domain,
+  }));
+
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   setURLList([...domainObj.savedURLList]);
+  // }, [domainObj]);
+  useEffect(() => {
+    Reducer.domainList.forEach(element => {
+      if (element.name === domainObj.name) {
+        setURLList([...element.savedURLList]);
+      }
+    });
+  }, [Reducer]);
 
   const onURLButtonClick = () => {
     setShowURLModal(!showURLModal);
   };
 
   const onURLEntered = enteredURL => {
-    const list = urlList;
-    list.push(enteredURL);
-    setURLList(list);
+    // const list = urlList;
+    // list.push(enteredURL);
+    // setURLList(list);
+
+    // dispatch(
+    //   actions.addURL({
+    //     name: domainObj.name,
+    //     savedURLList: [...domainObj.savedURLList, enteredURL],
+    //   }),
+    // );
+
+    dispatch(actions.addURL({domain: domainObj.name, url: enteredURL}));
     setShowURLModal(!showURLModal);
   };
 

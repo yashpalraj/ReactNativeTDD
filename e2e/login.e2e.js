@@ -89,5 +89,12 @@ describe('Example', () => {
     await element(by.id('buttonURL')).tap();
     await expect(element(by.label(urlText))).toBeVisible();
     await expect(element(by.id('urlTextInput'))).not.toBeVisible();
+
+    await element(
+      by.traits(['button']).withDescendant(by.label('Login')),
+    ).tap();
+
+    await element(by.label(domainTextInputValue)).tap();
+    await expect(element(by.label(urlText))).toBeVisible();
   }
 });
