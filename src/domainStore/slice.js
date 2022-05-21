@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 export const initialState = {
-  domainList: [{name: 'Test', savedURLList: ['www.gmail.com']}],
+  domainList: [],
 };
 
 export const slice = createSlice({
@@ -15,7 +15,6 @@ export const slice = createSlice({
       ];
     },
     addURL(state, action) {
-      // state.domainList = [...state, ...action.payload];
       const updatedArray = state.domainList.map(element => {
         if (element.name === action.payload.domain) {
           return {
@@ -27,15 +26,6 @@ export const slice = createSlice({
         }
       });
       state.domainList = updatedArray;
-      // state.domainList = action.payload;
-
-      // state.domainList = [
-      //   ...state,
-      //   name => {
-      //     action.payload.name, savedURLList => [...state.domainList];
-      //   },
-      // ];
-      // state.domainList = [...state, name:{  }];
     },
     reset(state) {
       state.domainList = [];
