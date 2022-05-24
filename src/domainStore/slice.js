@@ -8,6 +8,21 @@ export const slice = createSlice({
   name: 'domain',
   initialState,
   reducers: {
+    getURLList(state) {},
+    getURLListSuccess(state, action) {
+      console.log('action----', action);
+      const updatedArray = state.domainList.map(element => {
+        if (element.name === 'Raj') {
+          return {
+            ...element,
+            savedURLList: [...element.savedURLList, ...action.payload.data],
+          };
+        } else {
+          return element;
+        }
+      });
+      state.domainList = updatedArray;
+    },
     addDomain(state, action) {
       state.domainList = [
         ...state.domainList,

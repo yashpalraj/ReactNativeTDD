@@ -3,30 +3,42 @@ import {FlatList, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
+import {useInjectSaga} from 'redux-injectors';
 import AddURLModal from './AddURLModal';
-import {actions} from './domainStore/slice';
+import getURLListSaga from './domainStore/saga';
+import {actions, name} from './domainStore/slice';
 
 const URLList = ({navigation, route}) => {
   const {domainObj} = route.params;
   const [showURLModal, setShowURLModal] = useState(false);
   const [urlList, setURLList] = useState([]);
 
+  useInjectSaga({key: name, saga: getURLListSaga});
+
   const {Reducer} = useSelector(reducer => ({
     Reducer: reducer.domain.domain,
   }));
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   setURLList([...domainObj.savedURLList]);
-  // }, [domainObj]);
   useEffect(() => {
-    Reducer.domainList.forEach(element => {
-      if (element.name === domainObj.name) {
-        setURLList([...element.savedURLList]);
-      }
-    });
-  }, [Reducer]);
+    dispatch(actions.getURLList());
+  }, []);
+
+  useEffect(() => {
+    // Reducer.domainList.forEach(element => {
+    //   if (element.name === domainObj.name) {
+    //     setURLList([...element.savedURLList]);
+    //   }
+    // });
+
+    if (Reducer.domainList) {
+      Reducer.domainList.forEach(element => {
+        if (element.name === domainObj.name) {
+          setURLList([...element.savedURLList]);
+        }
+      });
+    }
+  }, [Reducer.domainList]);
 
   const onURLButtonClick = () => {
     setShowURLModal(!showURLModal);
@@ -61,29 +73,31 @@ const URLList = ({navigation, route}) => {
         Add URL
       </Button>
       <AddURLModal isVisible={showURLModal} onURLEntered={onURLEntered} />
-      <FlatList
-        style={{margin: 20}}
-        data={urlList}
-        keyExtractor={item => item}
-        renderItem={item => {
-          return (
-            <View
-              style={{
-                borderColor: '#000000',
-                borderRadius: 10,
-                borderWidth: 2,
-                marginVertical: 10,
-                marginHorizontal: 5,
-                padding: 5,
-                alignItems: 'center',
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-              }}>
-              <Text style={{fontSize: 15}}>{item.item}</Text>
-            </View>
-          );
-        }}
-      />
+      {urlList.length > 0 && (
+        <FlatList
+          style={{margin: 20}}
+          data={urlList}
+          keyExtractor={item => item}
+          renderItem={item => {
+            return (
+              <View
+                style={{
+                  borderColor: '#000000',
+                  borderRadius: 10,
+                  borderWidth: 2,
+                  marginVertical: 10,
+                  marginHorizontal: 5,
+                  padding: 5,
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                }}>
+                <Text style={{fontSize: 15}}>{item.item}</Text>
+              </View>
+            );
+          }}
+        />
+      )}
     </SafeAreaView>
   );
 };

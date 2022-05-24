@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit';
-import domainReducers from '../domainStore';
 
 import createSagaMiddleware from 'redux-saga';
 import {createInjectorsEnhancer} from 'redux-injectors';
