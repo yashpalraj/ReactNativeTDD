@@ -21,7 +21,7 @@ const URLList = ({navigation, route}) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.getURLList());
+    dispatch(actions.getURLList({isMock: false}));
   }, []);
 
   useEffect(() => {

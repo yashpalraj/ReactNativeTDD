@@ -11,17 +11,25 @@ export const slice = createSlice({
     getURLList(state) {},
     getURLListSuccess(state, action) {
       console.log('action----', action);
-      const updatedArray = state.domainList.map(element => {
-        if (element.name === 'Raj') {
-          return {
-            ...element,
-            savedURLList: [...element.savedURLList, ...action.payload.data],
-          };
-        } else {
-          return element;
-        }
-      });
-      state.domainList = updatedArray;
+
+      if (state.domainList.length > 0) {
+        const updatedArray = state.domainList.map(element => {
+          if (element.name === 'Raj') {
+            return {
+              ...element,
+              savedURLList: [...element.savedURLList, ...action.payload.data],
+            };
+          } else {
+            return element;
+          }
+        });
+        state.domainList = updatedArray;
+      } else {
+        state.domainList = [
+          ...state.domainList,
+          {name: 'Raj', savedURLList: [...action.payload.data]},
+        ];
+      }
     },
     addDomain(state, action) {
       state.domainList = [
