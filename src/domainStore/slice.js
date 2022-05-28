@@ -17,7 +17,7 @@ export const slice = createSlice({
           if (element.name === 'Raj') {
             return {
               ...element,
-              savedURLList: [...element.savedURLList, ...action.payload.data],
+              savedURLList: [...element.savedURLList, ...action.payload],
             };
           } else {
             return element;
@@ -27,7 +27,7 @@ export const slice = createSlice({
       } else {
         state.domainList = [
           ...state.domainList,
-          {name: 'Raj', savedURLList: [...action.payload.data]},
+          {name: 'Raj', savedURLList: [...action.payload]},
         ];
       }
     },
