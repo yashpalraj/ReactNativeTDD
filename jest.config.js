@@ -18,4 +18,5 @@ module.exports = {
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '\\.snap$'],
   cacheDirectory: '.jest/cache',
+  testTimeout: 20000,
 };
